@@ -1,5 +1,6 @@
 import React from "react";
 import LogoArgentBank from "/img/argentBankLogo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,9 @@ const Navbar = () => {
       />
       <div className="Navbar__right">
         <i className="fa-solid fa-circle-user Navbar__icon"></i>
-        <p className="Navbar__paragraphe">Sign In</p>
+        <Link to={"/signup"} className="Navbar__paragraphe">
+          Sign In
+        </Link>
       </div>
     </nav>
   );
