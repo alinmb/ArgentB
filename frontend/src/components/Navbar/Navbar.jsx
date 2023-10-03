@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="Navbar">
-      <img
-        src={LogoArgentBank}
-        className="Navbar__img"
-        alt="Cet élément représente le Logo de l'application web Argent Bank"
-      />
+      <Link to="/">
+        <img
+          src={LogoArgentBank}
+          className="Navbar__img"
+          alt="Cet élément représente le Logo de l'application web Argent Bank"
+        />
+      </Link>
       <div className="Navbar__right">
         <i className="fa-solid fa-circle-user Navbar__icon"></i>
-        <Link to={"/signup"} className="Navbar__paragraphe">
+        <Link to={"/signin"} className="Navbar__paragraphe">
           Sign In
         </Link>
       </div>
