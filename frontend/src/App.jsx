@@ -1,10 +1,14 @@
-import '../src/style/App.scss'
+import "../src/style/App.scss";
+import Navbar from "../src/components/Navbar/Navbar";
+import Hero from "../src/components/Hero/Hero";
 
 function App() {
-
   return (
-    <h1>Test</h1>
-  )
+    <div className="App">
+      <Navbar />
+      <Hero />
+    </div>
+  );
 }
 
-export default App
+export default App;
