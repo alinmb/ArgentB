@@ -30,16 +30,19 @@ const Features = () => {
 
   const feat = data.map((item) => {
     return (
-      <div key={item.id}>
-        <div className="Features__bloc">
-          <img src={item.img} className="Features__img" />
-          <h3 className="Features__title">{item.title}</h3>
-          <p className="Features__subtitle">{item.subtitle}</p>
-        </div>
+      <div key={item.id} className="Features__bloc">
+        <img src={item.img} className="Features__img" />
+        <h3 className="Features__title">{item.title}</h3>
+        <p className="Features__subtitle">{item.subtitle}</p>
       </div>
     );
   });
-  return <div className="Features">{feat}</div>;
+  return (
+    <>
+      <h2 className="Features__H2">Features</h2>
+      <section className="Features">{feat}</section>
+    </>
+  );
 };
 
 export default Features;
