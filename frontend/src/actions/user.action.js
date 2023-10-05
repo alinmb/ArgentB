@@ -1,12 +1,20 @@
-// import axios from "axios"
+import axios from "axios";
 
-// export const USER_LOGIN = "USER_LOGIN"
+export const USER_LOGIN = "USER_LOGIN";
 
-// export const userLogin = () => {
-//     return (dispatch) => {
-//         return axios.post(`http://localhost:3001/api/v1/user/login`, {
-
-//         }
-//         )
-//     }
-// }
+export const userLogin = (data, navigate) => {
+  return (dispatch) => {
+    return axios
+      .post(`http://localhost:3001/api/v1/user/login`, data)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          navigate("/userpanel");
+        }
+        dispatch({ type: USER_LOGIN, payload: data });
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la connexion:", error);
+      });
+  };
+};
