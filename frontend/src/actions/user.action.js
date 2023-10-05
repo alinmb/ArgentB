@@ -10,6 +10,7 @@ export const userLogin = (data, navigate) => {
         console.log(res);
         if (res.data.status === 200) {
           navigate("/userpanel");
+          console.log(res.data.body.token);
         }
         dispatch({ type: USER_LOGIN, payload: data });
       })

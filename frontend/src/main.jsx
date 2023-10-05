@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import Signin from "./pages/Signin/Signin.jsx";
+import Panel from "./pages/Panel/Panel.jsx";
 // REDUX
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/userpanel",
-    element: <h1>USER PANEL</h1>,
+    element: <Panel />,
   },
 ]);
 
