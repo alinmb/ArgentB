@@ -5,7 +5,7 @@ import { useDispatch /*useSelector*/ } from "react-redux";
 import { userLogin } from "../../actions/user.action";
 import { useNavigate } from "react-router-dom";
 
-const Signin = () => {
+const Login = () => {
   const form = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,11 +33,11 @@ const Signin = () => {
           <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="Signin__wrapper">
               <label htmlFor="email">Username</label>
-              <input type="text" id="email" />
+              <input type="text" id="email" required />
             </div>
             <div className="Signin__wrapper">
               <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
+              <input type="password" id="password" required />
             </div>
             <div className="Signin__remember">
               <input type="checkbox" id="remember-me" />
@@ -54,4 +54,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Login;

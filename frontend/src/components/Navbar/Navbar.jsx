@@ -28,7 +28,7 @@ const Navbar = () => {
         </Link>
         <div className="Navbar__right">
           <i className="fa-solid fa-circle-user Navbar__icon"></i>
-          <Link to={"/signin"} className="Navbar__paragraphe">
+          <Link to={"/login"} className="Navbar__paragraphe">
             Sign In
           </Link>
           {/* Si on est sur la page d'accueil donc sans token donc pas co, afficher ce link, si token = true remplacer le "sign in" par un sign out - Penser à l'username */}

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import Signin from "./pages/Signin/Signin.jsx";
+import Login from "./pages/Login/Login.jsx";
 import Panel from "./pages/Panel/Panel.jsx";
 // REDUX
 import { Provider } from "react-redux";
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/signin",
-    element: <Signin />,
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/userpanel",

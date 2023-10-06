@@ -27,7 +27,7 @@ export const userLogin = (data, navigate) => {
         if (res.data.status === 400) {
           sessionStorage.removeItem("userToken");
           localStorage.removeItem("userToken");
-          navigate("/signin");
+          navigate("/login");
         }
       })
       .catch((error) => {
