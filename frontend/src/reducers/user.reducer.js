@@ -1,5 +1,7 @@
-import { USER_LOGIN, USER_LOGOUT } from "../actions/user.action";
-const initialState = {};
+import { USER_LOGIN, USER_LOGOUT, USER_PROFIL } from "../actions/user.action";
+const initialState = {
+  userData: {},
+};
 
 export default function userReducer(state = initialState, action) {
   //SWITCH
@@ -7,11 +9,16 @@ export default function userReducer(state = initialState, action) {
     case USER_LOGIN:
       return {
         ...state,
-        user: action.payload,
+        userData: action.payload,
       };
     case USER_LOGOUT:
       return {
         ...state,
+      };
+    case USER_PROFIL:
+      return {
+        ...state,
+        userData: action.payload,
       };
     default:
       return state;

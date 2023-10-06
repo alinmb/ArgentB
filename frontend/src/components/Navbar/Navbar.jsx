@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LogoArgentBank from "/img/argentBankLogo.png";
 import { userLogout } from "../../actions/user.action";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../actions/user.action";
 
 const Navbar = () => {
   const token =
     sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userData = useSelector((state) => state.user.userData);
+  console.log(userData);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -16,6 +19,9 @@ const Navbar = () => {
     navigate("/");
   };
 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
   if (!token) {
     return (
       <nav className="Navbar">
@@ -47,7 +53,9 @@ const Navbar = () => {
         </Link>
         <div className="Navbar__right">
           <i className="fa-solid fa-circle-user Navbar__icon"></i>
-          <p className="Navbar__name">Username</p>
+          <Link to="/userpanel">
+            <p className="Navbar__name">{userData && userData.userName}</p>
+          </Link>
           <i className="fa-solid fa-right-from-bracket Navbar__icon"></i>
           <Link to={"/"} className="Navbar__paragraphe" onClick={handleLogout}>
             Sign Out

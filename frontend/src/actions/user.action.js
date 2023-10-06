@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
+export const USER_PROFIL = "USER_PROFIL";
 
 //Login
 export const userLogin = (data, navigate) => {
@@ -43,5 +44,34 @@ export const userLogout = (navigate) => {
   navigate("/");
   return {
     type: USER_LOGOUT,
+  };
+};
+
+//Profils
+export const getUserData = () => {
+  return (dispatch) => {
+    const tokens =
+      sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
+
+    if (!tokens) return;
+
+    return axios
+      .post(
+        "http://localhost:3001/api/v1/user/profile",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.status === 200) {
+          dispatch({ type: USER_PROFIL, payload: res.data.body });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 };
