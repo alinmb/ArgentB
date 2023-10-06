@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const Navbar = () => {
-  const token = sessionStorage.getItem("userToken");
+  const token =
+    sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

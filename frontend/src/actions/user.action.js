@@ -18,14 +18,15 @@ export const userLogin = (data, navigate) => {
         }
 
         if (data.checked) {
-          sessionStorage.setItem("userToken", token);
+          localStorage.setItem("userToken", token);
         } else {
-          sessionStorage.removeItem("userToken");
+          sessionStorage.setItem("userToken", token);
         }
         dispatch({ type: USER_LOGIN, payload: data });
 
         if (res.data.status === 400) {
           sessionStorage.removeItem("userToken");
+          localStorage.removeItem("userToken");
           navigate("/signin");
         }
       })
@@ -38,6 +39,7 @@ export const userLogin = (data, navigate) => {
 //Logout
 export const userLogout = (navigate) => {
   sessionStorage.removeItem("userToken");
+  localStorage.removeItem("userToken");
   navigate("/");
   return {
     type: USER_LOGOUT,
