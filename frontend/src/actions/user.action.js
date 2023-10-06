@@ -11,10 +11,12 @@ export const userLogin = (data, navigate) => {
       .then((res) => {
         console.log(res);
         const token = res.data.body.token;
+
         if (res.data.status === 200) {
           navigate("/userpanel");
           console.log(res.data.body.token);
         }
+
         if (data.checked) {
           sessionStorage.setItem("userToken", token);
         } else {
@@ -22,7 +24,7 @@ export const userLogin = (data, navigate) => {
         }
         dispatch({ type: USER_LOGIN, payload: data });
 
-        if (res.data.status === 401) {
+        if (res.data.status === 400) {
           sessionStorage.removeItem("userToken");
           navigate("/signin");
         }
