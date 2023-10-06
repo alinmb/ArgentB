@@ -8,20 +8,19 @@ import { useNavigate } from "react-router-dom";
 const Signin = () => {
   const form = useRef();
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
 
   const handleForm = async (e) => {
     e.preventDefault();
 
-    console.log(form);
-
     const postData = {
       email: form.current[0].value,
       password: form.current[1].value,
+      checked: form.current.querySelector("#remember-me").checked,
     };
 
     dispatch(userLogin(postData, navigate));
+    console.log(postData);
   };
 
   return (

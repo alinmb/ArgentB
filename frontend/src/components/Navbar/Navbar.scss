@@ -11,6 +11,13 @@
     align-items: center;
     gap: 5px;
   }
+  &__name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #2c3e50;
+    margin-right: 8px;
+  }
 
   &__img {
     max-width: 100%;
@@ -19,11 +26,12 @@
   &__icon {
     font-size: 15px;
     color: #2c3e50;
+    margin-right: 2px;
   }
   &__paragraphe {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     color: #2c3e50;
     cursor: pointer;
   }
