@@ -23,16 +23,18 @@ export const userLogin = (data, navigate) => {
         } else {
           sessionStorage.setItem("userToken", token);
         }
-        dispatch({ type: USER_LOGIN, payload: data });
 
         if (res.data.status === 400) {
           sessionStorage.removeItem("userToken");
           localStorage.removeItem("userToken");
-          navigate("/login");
+          // navigate("/login");
         }
+
+        dispatch({ type: USER_LOGIN, payload: data });
       })
       .catch((error) => {
         console.error("Erreur lors de la connexion:", error);
+        alert("Email ou mot de passe invalide!");
       });
   };
 };

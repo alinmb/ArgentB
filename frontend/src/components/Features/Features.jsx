@@ -39,7 +39,7 @@ const Features = () => {
   });
   return (
     <>
-      <h2 className="Features__H2">Features</h2>
+      {/* <h2 className="Features__H2">Features</h2> */}
       <section className="Features">{feat}</section>
     </>
   );
