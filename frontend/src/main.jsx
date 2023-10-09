@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PrivateRoute from "./securedRoute/PrivateRoute.jsx";
 import App from "./App.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Panel from "./pages/Panel/Panel.jsx";
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/userpanel",
-    element: <Panel />,
+    element: <PrivateRoute element={<Panel />} />,
   },
 ]);
 
