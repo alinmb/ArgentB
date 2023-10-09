@@ -13,11 +13,6 @@ const HeaderPanel = () => {
   };
   console.log(edit);
 
-  const closeEditor = (e) => {
-    e.preventDefault();
-    setEdit((prevstate) => !prevstate);
-  };
-
   return (
     <div className="header">
       <h1>
@@ -25,7 +20,7 @@ const HeaderPanel = () => {
         <br />
         {userData && userData.userName}
       </h1>
-      {edit && <UsernameEditor onCancel={closeEditor} />}
+      {edit && <UsernameEditor onCancel={activeEdit} />}
       {!edit && (
         <button className="header__btn" onClick={activeEdit}>
           Edit Name

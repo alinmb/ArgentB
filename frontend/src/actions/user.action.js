@@ -3,6 +3,7 @@ import axios from "axios";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_PROFIL = "USER_PROFIL";
+export const EDIT_PROFIL = "EDIT_PROFIL";
 
 //Login
 export const userLogin = (data, navigate) => {
@@ -30,7 +31,7 @@ export const userLogin = (data, navigate) => {
           // navigate("/login");
         }
 
-        dispatch({ type: USER_LOGIN, payload: data });
+        dispatch({ type: USER_LOGIN });
       })
       .catch((error) => {
         console.error("Erreur lors de la connexion:", error);
@@ -70,6 +71,35 @@ export const getUserData = () => {
       .then((res) => {
         if (res.data.status === 200) {
           dispatch({ type: USER_PROFIL, payload: res.data.body });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+};
+
+//Username
+export const editedUsername = (userName) => {
+  return (dispatch) => {
+    const tokens =
+      sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
+
+    if (!tokens) return;
+
+    return axios
+      .put(
+        "http://localhost:3001/api/v1/user/profile",
+        { userName },
+        {
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.status === 200) {
+          dispatch({ type: EDIT_PROFIL, payload: userName });
         }
       })
       .catch((error) => {
