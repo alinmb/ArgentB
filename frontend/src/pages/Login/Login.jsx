@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { useDispatch /*useSelector*/ } from "react-redux";
@@ -6,6 +6,7 @@ import { userLogin } from "../../actions/user.action";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const form = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
       checked: form.current.querySelector("#remember-me").checked,
     };
 
-    dispatch(userLogin(postData, navigate));
+    dispatch(userLogin(postData, navigate, setErrorMessage));
   };
 
   return (
@@ -28,7 +29,9 @@ const Login = () => {
       <main className="Signin">
         <section className="Signin__form">
           <i className="fa fa-user-circle Signin__icon"></i>
-          <h1>Sign In</h1>
+          <h1 style={errorMessage ? { color: "red" } : null}>
+            {errorMessage || "Sign In"}
+          </h1>
           <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="Signin__wrapper">
               <label htmlFor="email">Email</label>

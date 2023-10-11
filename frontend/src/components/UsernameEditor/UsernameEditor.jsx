@@ -11,6 +11,7 @@ const UsernameEditor = (props) => {
   const handleUsernameEdit = (e) => {
     e.preventDefault();
     dispatch(editedUsername(editUsername));
+    props.onCancel();
   };
 
   return (
@@ -50,7 +51,11 @@ const UsernameEditor = (props) => {
         <button className="Editor__save" type="submit">
           Save
         </button>
-        <button className="Editor__cancel" onClick={props.onCancel}>
+        <button
+          className="Editor__cancel"
+          type="button"
+          onClick={props.onCancel}
+        >
           Cancel
         </button>
       </div>

@@ -15,7 +15,7 @@ export const removeUserToken = () => {
 };
 
 //Login
-export const userLogin = (data, navigate) => {
+export const userLogin = (data, navigate, setErrorMessage) => {
   return async (dispatch) => {
     try {
       const res = await axios.post(
@@ -36,12 +36,11 @@ export const userLogin = (data, navigate) => {
       if (res.data.status === 400) {
         sessionStorage.removeItem("userToken");
         localStorage.removeItem("userToken");
-        // navigate("/login");
       }
       dispatch({ type: USER_LOGIN });
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
-      alert("Email ou mot de passe invalide!");
+      setErrorMessage("Incorrect username or password");
     }
   };
 };
