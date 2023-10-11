@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { getUserData } from "../../actions/user.action";
 import { useSelector } from "react-redux";
 import UsernameEditor from "../UsernameEditor/UsernameEditor";
 

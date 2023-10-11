@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import { useDispatch /*useSelector*/ } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../actions/user.action";
 import { useNavigate } from "react-router-dom";
 

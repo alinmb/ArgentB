@@ -1,11 +1,13 @@
 import React from "react";
-import headerImg from "/img/bank-tree.jpeg";
+import headerImg from "/img/bank-tree.webp";
+import headerImgSm from "/img/bank-tree-sm.webp";
 
 const Hero = () => {
   return (
     <header className="Hero">
       <img
-        src={headerImg}
+        src={headerImgSm}
+        srcSet={`${headerImg} 1000w`}
         alt="Cette photographie représente un verre transparent avec des pièces avec une petite plante qui y pousse au milieu"
         className="Hero__img"
       />

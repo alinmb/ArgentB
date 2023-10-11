@@ -4,7 +4,6 @@ import { editedUsername } from "../../actions/user.action";
 
 const UsernameEditor = (props) => {
   const userData = useSelector((state) => state.user.userData);
-  // const [showEdit, setShowEdit] = useState(true);
   const [editUsername, setEditUsername] = useState(userData.userName);
   const dispatch = useDispatch();
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LogoArgentBank from "/img/argentBankLogo.png";
+import LogoArgentBank from "/img/argentBankLogo.webp";
 import { userLogout } from "../../actions/user.action";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +36,6 @@ const Navbar = () => {
           <Link to={"/login"} className="Navbar__paragraphe">
             Sign In
           </Link>
-          {/* Si on est sur la page d'accueil donc sans token donc pas co, afficher ce link, si token = true remplacer le "sign in" par un sign out - Penser à l'username */}
         </div>
       </nav>
     );
@@ -59,7 +58,6 @@ const Navbar = () => {
           <Link to={"/"} className="Navbar__paragraphe" onClick={handleLogout}>
             Sign Out
           </Link>
-          {/* Si on est sur la page d'accueil donc sans token donc pas co, afficher ce link, si token = true remplacer le "sign in" par un sign out - Penser à l'username */}
         </div>
       </nav>
     );
