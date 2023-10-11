@@ -5,7 +5,6 @@ const PrivateRoute = ({ element }) => {
   const userLogged =
     !!sessionStorage.getItem("userToken") ||
     !!localStorage.getItem("userToken");
-  console.log(userLogged);
 
   return userLogged ? element : <Navigate to="/login" />;
 };

@@ -20,7 +20,6 @@ const Login = () => {
     };
 
     dispatch(userLogin(postData, navigate));
-    console.log(postData);
   };
 
   return (
@@ -32,7 +31,7 @@ const Login = () => {
           <h1>Sign In</h1>
           <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="Signin__wrapper">
-              <label htmlFor="email">Username</label>
+              <label htmlFor="email">Email</label>
               <input type="text" id="email" required />
             </div>
             <div className="Signin__wrapper">

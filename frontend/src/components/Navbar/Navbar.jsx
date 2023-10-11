@@ -11,7 +11,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.user.userData);
-  console.log(userData);
 
   const handleLogout = (e) => {
     e.preventDefault();

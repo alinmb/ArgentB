@@ -6,12 +6,10 @@ import UsernameEditor from "../UsernameEditor/UsernameEditor";
 const HeaderPanel = () => {
   const [edit, setEdit] = useState(false);
   const userData = useSelector((state) => state.user.userData);
-  console.log(userData.userName);
 
   const activeEdit = () => {
     setEdit((prevState) => !prevState);
   };
-  console.log(edit);
 
   return (
     <div className="header">

@@ -4,62 +4,72 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_PROFIL = "USER_PROFIL";
 export const EDIT_PROFIL = "EDIT_PROFIL";
+export const SET_TOKEN = "SET_TOKEN";
+export const REMOVE_TOKEN = "REMOVE_TOKEN";
+
+export const setUserToken = (token) => {
+  return { type: SET_TOKEN, token };
+};
+export const removeUserToken = () => {
+  return { type: REMOVE_TOKEN };
+};
 
 //Login
 export const userLogin = (data, navigate) => {
-  return (dispatch) => {
-    return axios
-      .post(`http://localhost:3001/api/v1/user/login`, data)
-      .then((res) => {
-        console.log(res);
-        const token = res.data.body.token;
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3001/api/v1/user/login`,
+        data
+      );
+      const token = res.data.body.token;
 
-        if (res.data.status === 200) {
-          navigate("/userpanel");
-          console.log(res.data.body.token);
-        }
-
-        if (data.checked) {
-          localStorage.setItem("userToken", token);
-        } else {
-          sessionStorage.setItem("userToken", token);
-        }
-
-        if (res.data.status === 400) {
-          sessionStorage.removeItem("userToken");
-          localStorage.removeItem("userToken");
-          // navigate("/login");
-        }
-
-        dispatch({ type: USER_LOGIN });
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la connexion:", error);
-        alert("Email ou mot de passe invalide!");
-      });
+      if (res.data.status === 200) {
+        navigate("/userpanel");
+        dispatch(setUserToken(token));
+      }
+      if (data.checked) {
+        localStorage.setItem("userToken", token);
+      } else {
+        sessionStorage.setItem("userToken", token);
+      }
+      if (res.data.status === 400) {
+        sessionStorage.removeItem("userToken");
+        localStorage.removeItem("userToken");
+        // navigate("/login");
+      }
+      dispatch({ type: USER_LOGIN });
+    } catch (error) {
+      console.error("Erreur lors de la connexion:", error);
+      alert("Email ou mot de passe invalide!");
+    }
   };
 };
 
 //Logout
 export const userLogout = (navigate) => {
-  sessionStorage.removeItem("userToken");
-  localStorage.removeItem("userToken");
-  navigate("/");
-  return {
-    type: USER_LOGOUT,
+  return (dispatch) => {
+    sessionStorage.removeItem("userToken");
+    localStorage.removeItem("userToken");
+    dispatch(removeUserToken());
+    navigate("/");
+    return {
+      type: USER_LOGOUT,
+    };
   };
 };
 
 //Profils
 export const getUserData = () => {
-  return (dispatch) => {
-    const tokens =
-      sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
+  return async (dispatch) => {
+    try {
+      const tokens =
+        sessionStorage.getItem("userToken") ||
+        localStorage.getItem("userToken");
 
-    if (!tokens) return;
+      if (!tokens) return;
 
-    return axios
-      .post(
+      const res = await axios.post(
         "http://localhost:3001/api/v1/user/profile",
         {},
         {
@@ -67,28 +77,26 @@ export const getUserData = () => {
             Authorization: `Bearer ${tokens}`,
           },
         }
-      )
-      .then((res) => {
-        if (res.data.status === 200) {
-          dispatch({ type: USER_PROFIL, payload: res.data.body });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      );
+      if (res.data.status === 200) {
+        dispatch({ type: USER_PROFIL, payload: res.data.body });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
 //Username
 export const editedUsername = (userName) => {
-  return (dispatch) => {
-    const tokens =
-      sessionStorage.getItem("userToken") || localStorage.getItem("userToken");
+  return async (dispatch) => {
+    try {
+      const tokens =
+        sessionStorage.getItem("userToken") ||
+        localStorage.getItem("userToken");
 
-    if (!tokens) return;
-
-    return axios
-      .put(
+      if (!tokens) return;
+      const res = await axios.put(
         "http://localhost:3001/api/v1/user/profile",
         { userName },
         {
@@ -96,14 +104,12 @@ export const editedUsername = (userName) => {
             Authorization: `Bearer ${tokens}`,
           },
         }
-      )
-      .then((res) => {
-        if (res.data.status === 200) {
-          dispatch({ type: EDIT_PROFIL, payload: userName });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      );
+      if (res.data.status === 200) {
+        dispatch({ type: EDIT_PROFIL, payload: userName });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 };

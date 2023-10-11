@@ -24,7 +24,7 @@ const UsernameEditor = (props) => {
           id="uname"
           name="uname"
           onChange={(e) => setEditUsername(e.target.value)}
-        ></input>
+        />
       </div>
       <div className="Editor__firstname">
         <label htmlFor="fname">First name :</label>
@@ -34,7 +34,7 @@ const UsernameEditor = (props) => {
           name="fname"
           value={userData.firstName}
           disabled
-        ></input>
+        />
       </div>
       <div className="Editor__lastname">
         <label htmlFor="lname">Last name :</label>
@@ -44,7 +44,7 @@ const UsernameEditor = (props) => {
           name="lname"
           value={userData.lastName}
           disabled
-        ></input>
+        />
       </div>
       <div className="Editor__btns">
         <button className="Editor__save" type="submit">
