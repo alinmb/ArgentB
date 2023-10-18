@@ -111,7 +111,7 @@ paths:
         description: API that get every transactions of the month.
         responses:
           "200":
-            description: OK - Successfully recovered every transactions of the month
+            description: Successfully recovered every transactions of the month
             schema:
               $ref: "#/definitions/TransactionsResponse"
           "400":
@@ -120,7 +120,7 @@ paths:
             description: Invalid transaction
           "500":
             description: Internal Server Error
-  /transactions/{trId}:
+  /transactions/{id}:
       get:
         security:
           - Bearer: []
@@ -130,7 +130,7 @@ paths:
         description: API that get a specific transaction.
         parameters:
           - in: path
-            name: trId
+            name: id
             required: true
             type: string
             minimum: 1
@@ -146,7 +146,7 @@ paths:
             description: Invalid transaction
           "500":
             description: Internal Server Error
-  /transactions/{trId}/{detail}:
+  /transactions/{id}/{detail}:
       delete:
         security:
           - Bearer: []
@@ -156,7 +156,7 @@ paths:
         description: API that delete a note or a category of a specific transaction.
         parameters:
           - in: path
-            name: trId
+            name: id
             required: true
             type: string
             description: The ID of the transaction to modify.
@@ -183,7 +183,7 @@ paths:
         description: API that update a note or a category of a specific transaction.
         parameters:
           - in: path
-            name: trId
+            name: id
             required: true
             type: string
             description: The ID of the transaction to modify.
@@ -313,7 +313,7 @@ definitions:
     properties:
       status:
         type: integer
-      trId:
+      id:
           type: string
           description: The ID of the transaction to modify.
       detail:

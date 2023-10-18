@@ -40,7 +40,7 @@ export const userLogin = (data, navigate, setErrorMessage) => {
       dispatch({ type: USER_LOGIN });
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
-      setErrorMessage("Incorrect username or password");
+      setErrorMessage("Incorrect email or password");
     }
   };
 };
