@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../actions/user.action";
 
 const Navbar = () => {
-  const reduxtoken = useSelector((state) => state.user.token);
+  const tokens =
+    useSelector((state) => state.user.token) ||
+    localStorage.getItem("userToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.user.userData);
@@ -18,9 +20,9 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    dispatch(getUserData(reduxtoken));
+    dispatch(getUserData(tokens));
   }, [dispatch]);
-  if (!reduxtoken) {
+  if (!tokens) {
     return (
       <nav className="Navbar">
         <Link to="/">
