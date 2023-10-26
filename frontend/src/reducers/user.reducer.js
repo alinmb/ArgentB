@@ -3,12 +3,9 @@ import {
   USER_LOGOUT,
   USER_PROFIL,
   EDIT_PROFIL,
-  SET_TOKEN,
-  REMOVE_TOKEN,
 } from "../actions/user.action";
 const initialState = {
   userData: {},
-  token: null,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -22,10 +19,6 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case SET_TOKEN:
-      return { ...state, token: action.payload };
-    case REMOVE_TOKEN:
-      return { ...state, token: null };
     case USER_PROFIL:
       return {
         ...state,

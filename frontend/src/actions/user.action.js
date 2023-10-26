@@ -4,15 +4,6 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_PROFIL = "USER_PROFIL";
 export const EDIT_PROFIL = "EDIT_PROFIL";
-export const SET_TOKEN = "SET_TOKEN";
-export const REMOVE_TOKEN = "REMOVE_TOKEN";
-
-export const setUserToken = (token) => {
-  return { type: SET_TOKEN, token };
-};
-export const removeUserToken = () => {
-  return { type: REMOVE_TOKEN };
-};
 
 //Login
 export const userLogin = (data, navigate, setErrorMessage) => {
@@ -26,7 +17,6 @@ export const userLogin = (data, navigate, setErrorMessage) => {
 
       if (res.data.status === 200) {
         navigate("/userpanel");
-        dispatch(setUserToken(token));
       }
       if (data.checked) {
         localStorage.setItem("userToken", token);
@@ -47,10 +37,9 @@ export const userLogin = (data, navigate, setErrorMessage) => {
 
 //Logout
 export const userLogout = (navigate) => {
-  return (dispatch) => {
+  return () => {
     sessionStorage.removeItem("userToken");
     localStorage.removeItem("userToken");
-    dispatch(removeUserToken());
     navigate("/");
     return {
       type: USER_LOGOUT,
