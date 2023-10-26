@@ -4,6 +4,8 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_PROFIL = "USER_PROFIL";
 export const EDIT_PROFIL = "EDIT_PROFIL";
+export const SET_TOKEN = "SET_TOKEN";
+export const REMOVE_TOKEN = "REMOVE_TOKEN";
 
 //Login
 export const userLogin = (data, navigate, setErrorMessage) => {
@@ -14,17 +16,14 @@ export const userLogin = (data, navigate, setErrorMessage) => {
         data
       );
       const token = res.data.body.token;
-
+      dispatch({ type: SET_TOKEN, payload: token });
       if (res.data.status === 200) {
         navigate("/userpanel");
       }
       if (data.checked) {
         localStorage.setItem("userToken", token);
-      } else {
-        sessionStorage.setItem("userToken", token);
       }
       if (res.data.status === 400) {
-        sessionStorage.removeItem("userToken");
         localStorage.removeItem("userToken");
       }
       dispatch({ type: USER_LOGIN });
@@ -37,9 +36,9 @@ export const userLogin = (data, navigate, setErrorMessage) => {
 
 //Logout
 export const userLogout = (navigate) => {
-  return () => {
-    sessionStorage.removeItem("userToken");
+  return (dispatch) => {
     localStorage.removeItem("userToken");
+    dispatch({ type: REMOVE_TOKEN });
     navigate("/");
     return {
       type: USER_LOGOUT,
@@ -48,12 +47,10 @@ export const userLogout = (navigate) => {
 };
 
 //Profils
-export const getUserData = () => {
+export const getUserData = (token) => {
   return async (dispatch) => {
     try {
-      const tokens =
-        sessionStorage.getItem("userToken") ||
-        localStorage.getItem("userToken");
+      const tokens = token || localStorage.getItem("userToken");
 
       if (!tokens) return;
 
@@ -76,12 +73,10 @@ export const getUserData = () => {
 };
 
 //Username
-export const editedUsername = (userName) => {
+export const editedUsername = (userName, token) => {
   return async (dispatch) => {
     try {
-      const tokens =
-        sessionStorage.getItem("userToken") ||
-        localStorage.getItem("userToken");
+      const tokens = token || localStorage.getItem("userToken");
 
       if (!tokens) return;
       const res = await axios.put(

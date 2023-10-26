@@ -4,12 +4,13 @@ import { editedUsername } from "../../actions/user.action";
 
 const UsernameEditor = (props) => {
   const userData = useSelector((state) => state.user.userData);
+  const reduxtoken = useSelector((state) => state.user.token);
   const [editUsername, setEditUsername] = useState(userData.userName);
   const dispatch = useDispatch();
 
   const handleUsernameEdit = (e) => {
     e.preventDefault();
-    dispatch(editedUsername(editUsername));
+    dispatch(editedUsername(editUsername, reduxtoken));
     props.onCancel();
   };
 
