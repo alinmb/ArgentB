@@ -16,7 +16,6 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(userLogout(navigate));
-    navigate("/");
   };
 
   useEffect(() => {
@@ -56,7 +55,7 @@ const Navbar = () => {
             <p className="Navbar__name">{userData && userData.userName}</p>
           </Link>
           <i className="fa-solid fa-right-from-bracket Navbar__icon"></i>
-          <Link to={"/"} className="Navbar__paragraphe" onClick={handleLogout}>
+          <Link className="Navbar__paragraphe" onClick={handleLogout}>
             Sign Out
           </Link>
         </div>

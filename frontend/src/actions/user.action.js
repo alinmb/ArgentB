@@ -79,6 +79,7 @@ export const editedUsername = (userName, token) => {
       const tokens = token || localStorage.getItem("userToken");
 
       if (!tokens) return;
+
       const res = await axios.put(
         "http://localhost:3001/api/v1/user/profile",
         { userName },

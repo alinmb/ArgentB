@@ -5,9 +5,6 @@ import HeaderPanel from "../../components/HeadPanel/HeaderPanel";
 import Account from "../../components/Account/Account";
 
 const Panel = () => {
-  /* Faire un composant header avec bouton editer */
-  /* Composant account props -> tableau -> map -> return account */
-
   const data = [
     {
       id: 1,

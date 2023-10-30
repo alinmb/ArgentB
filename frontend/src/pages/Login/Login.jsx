@@ -30,9 +30,7 @@ const Login = () => {
       <main className="Signin">
         <section className="Signin__form">
           <i className="fa fa-user-circle Signin__icon"></i>
-          <h1 style={errorMessage ? { color: "red" } : null}>
-            {errorMessage || "Sign In"}
-          </h1>
+          <h1>Sign In</h1>
           <form ref={form} onSubmit={(e) => handleForm(e)}>
             <div className="Signin__wrapper">
               <label htmlFor="email">Email</label>
@@ -46,6 +44,7 @@ const Login = () => {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
+            <p style={errorMessage ? { color: "red" } : null}>{errorMessage}</p>
             <button className="Signin__btn" type="submit">
               Sign In
             </button>
