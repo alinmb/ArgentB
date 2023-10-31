@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LogoArgentBank from "/img/argentBankLogo.webp";
 import { userLogout } from "../../actions/user.action";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../../actions/user.action";
 
 const Navbar = () => {
   const tokens =
@@ -18,9 +17,6 @@ const Navbar = () => {
     dispatch(userLogout(navigate));
   };
 
-  useEffect(() => {
-    dispatch(getUserData(tokens));
-  }, [dispatch]);
   if (!tokens) {
     return (
       <nav className="Navbar">

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import HeaderPanel from "../../components/HeadPanel/HeaderPanel";
 import Account from "../../components/Account/Account";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../actions/user.action";
+
 const Panel = () => {
+  const tokens =
+    useSelector((state) => state.user.token) ||
+    localStorage.getItem("userToken");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData(tokens));
+  }, [dispatch]);
+
   const data = [
     {
       id: 1,
