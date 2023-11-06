@@ -102,110 +102,83 @@ paths:
         "500":
           description: Internal Server Error
   /transactions:
-      get:
-        security:
-          - Bearer: []
-        tags:
-          - Transactions Module
-        summary: Return every transactions of the month.
-        description: API that get every transactions of the month.
-        responses:
-          "200":
-            description: Successfully recovered every transactions of the month
-            schema:
-              $ref: "#/definitions/TransactionsResponse"
-          "400":
-            description: Invalid Fields
-          "404":
-            description: Invalid transaction
-          "500":
-            description: Internal Server Error
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Return every transactions.
+      description: API that get every transactions.
+      parameters:
+        - in: query
+          name: month
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully recovered every transactions of the month
+          schema:
+            $ref: "#/definitions/TransactionsResponse"
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Invalid transaction
+        "500":
+          description: Internal Server Error
   /transactions/{id}:
-      get:
-        security:
-          - Bearer: []
-        tags:
-          - Transactions Module
-        summary: Return specific transaction.
-        description: API that get a specific transaction.
-        parameters:
-          - in: path
-            name: id
-            required: true
-            type: string
-            minimum: 1
-            description: The ID of the transaction to return.
-        responses:
-          "200":
-            description: Successfully recovered targeted transaction.
-            schema:
-              $ref: "#/definitions/SpecificTransactionResponse"
-          "400":
-            description: Invalid Fields
-          "404":
-            description: Invalid transaction
-          "500":
-            description: Internal Server Error
-  /transactions/{id}/{detail}:
-      delete:
-        security:
-          - Bearer: []
-        tags:
-          - Transactions Module
-        summary: Delete a note or a category of a specific transaction.
-        description: API that delete a note or a category of a specific transaction.
-        parameters:
-          - in: path
-            name: id
-            required: true
-            type: string
-            description: The ID of the transaction to modify.
-          - in: path
-            name: detail
-            required: true
-            type: string
-            description: Specify whether to delete a note or a category.
-        responses:
-          "200":
-            description: Successfully deleted.
-          "400":
-            description: Invalid Fields
-          "404":
-            description: Invalid transaction
-          "500":
-            description: Internal Server Error
-      put:
-        security:
-          - Bearer: []
-        tags:
-          - Transactions Module
-        summary: Update a note or a category of a specific transaction.
-        description: API that update a note or a category of a specific transaction.
-        parameters:
-          - in: path
-            name: id
-            required: true
-            type: string
-            description: The ID of the transaction to modify.
-          - in: path
-            name: detail
-            required: true
-            type: string
-            description: Specify whether to update a note or a category.
-          - in: body
-            name: transactionUpdate
-            required: transactionUpdate
-            schema:
-              $ref: "#/definitions/TransactionUpdate"
-        responses:
-          "200":
-            description: Successfully updated.
-          "400":
-            description: Invalid Fields
-          "404":
-            description: Invalid transaction
-          "500":
-            description: Internal Server Error
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Return specific transaction.
+      description: API that get a specific transaction.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+          minimum: 1
+          description: The ID of the transaction to return.
+      responses:
+        "200":
+          description: Successfully recovered targeted transaction.
+          schema:
+            $ref: "#/definitions/SpecificTransactionResponse"
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Invalid transaction
+        "500":
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Update a note or a category of a specific transaction.
+      description: API that update a note or a category of a specific transaction.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+          description: The ID of the transaction to modify.
+        - in: body
+          name: body
+          description: Details Payload
+          required: true
+          schema:
+            $ref: "#/definitions/TransactionUpdate"
+      responses:
+        "200":
+          description: Successfully updated.
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Invalid transaction
+        "500":
+          description: Internal Server Error
 
 securityDefinitions:
   Bearer:
@@ -292,7 +265,7 @@ definitions:
       body:
         type: array
         items:
-          $ref: "#/definitions/Transactions" 
+          $ref: "#/definitions/Transactions"
         description: Transaction's array
   SpecificTransactionResponse:
     type: object
@@ -314,14 +287,11 @@ definitions:
       status:
         type: integer
       id:
-          type: string
-          description: The ID of the transaction to modify.
-      detail:
-          type: string
-          description: Specify whether to update a note or a category.
+        type: string
+        description: The ID of the transaction to modify.
       category:
-          type: string
-          description: Updated category.
+        type: string
+        description: Updated category.
       note:
-          type: string
-          description: Updated note.
+        type: string
+        description: Updated note.
